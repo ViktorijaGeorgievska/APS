@@ -16,7 +16,7 @@ public class SwapPairs1 {
  
             Integer helper = first.element;             // чувај вредност на first
             first.element = second.element;             // вредноста на first нека биде вредноста на наредниот (second)
-            second.element = helper;                    // вредноста на наредниот (second) нека биде вредноста на first
+            second.element = helper;                    // вредноста на наредниот (second) нека биде вредноста на претходниот (first)
             
             first = first.succ.succ;
         }
