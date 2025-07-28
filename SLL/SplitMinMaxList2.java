@@ -1,5 +1,4 @@
 import java.util.Scanner;
-import static java.lang.Math.abs;
 
 /*
 APS book
@@ -9,6 +8,36 @@ Input:                   Output:
 */
 
 public class SplitMinMaxList2 {
+    public static void split (SLL<Integer> list) {
+        SLL<Integer> closerToMax = new SLL<>();
+        SLL<Integer> closerToMin = new SLL<>();
+
+        SLLNode<Integer> current = list.getFirst();
+        int max = Integer.MIN_VALUE;
+        int min = Integer.MAX_VALUE;
+
+        while (current != null) {
+            if (current.element > max)
+                max = current.element;
+            if (current.element < min)
+                min = current.element;
+
+            current = current.succ;
+        }
+
+        current = list.getFirst();
+        while (current != null) {
+            if (Math.abs(current.element - max) < Math.abs(current.element - min))
+                closerToMax.insertLast(current.element);
+            else
+                closerToMin.insertLast(current.element);
+            current = current.succ;
+        }
+
+        System.out.println(closerToMin);
+        System.out.println(closerToMax);
+    }
+
     public static void main(String[] args) {
         SLL<Integer> lista = new SLL<>();
 
@@ -18,36 +47,6 @@ public class SplitMinMaxList2 {
             lista.insertLast(in.nextInt());
         }
         in.close();
-
-        SLL<Integer> closerToMin = new SLL<>();
-        SLL<Integer> closerToMax = new SLL<>();
-        SLLNode<Integer> current = lista.getFirst();
-        SLLNode<Integer> maxNode = current;
-        SLLNode<Integer> minNode = current;
-
-        current = current.succ;
-        // наоѓаме min и max елемент
-        while (current != null) {
-            if (current.element > maxNode.element) {
-                maxNode = current;
-            }
-            if (current.element < minNode.element) {
-                minNode = current;
-            }
-            current = current.succ;
-        }
-
-        current = lista.getFirst();
-        while (current != null) {
-            if (abs(current.element - minNode.element) <= abs(current.element - maxNode.element)) {
-                closerToMin.insertLast(current.element);
-            }
-            else {
-                closerToMax.insertLast(current.element);
-            }
-            current = current.succ;
-        }
-        System.out.println(closerToMin);
-        System.out.println(closerToMax);
+        split(lista);
     }
 }
