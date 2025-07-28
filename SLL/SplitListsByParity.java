@@ -7,7 +7,7 @@ Input:                 Output:
 1 3 2 4 5 7 6 8        3->7
 */
 
-public class RazdeliLista1 {
+public class SplitListsByParity {
     public static void splitList(SLL<Integer> list) {
         SLL<Integer> parni = new SLL<>();
         SLL<Integer> neParni = new SLL<>();
@@ -41,6 +41,7 @@ public class RazdeliLista1 {
             list.insertLast(input.nextInt());
         }
         input.close();
+        
         splitList(list);
     }
 }
