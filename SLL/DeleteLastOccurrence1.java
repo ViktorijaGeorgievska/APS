@@ -8,7 +8,7 @@ Input:         Output:
 
 import java.util.Scanner;
 
-public class IzbrishiPosleden1 {
+public class DeleteLastOccurrence1 {
     public static void deleteLast (SLL<Integer> list, int deleteNum) {
         SLLNode<Integer> current = list.getFirst();
         SLLNode<Integer> toDelete = null;
