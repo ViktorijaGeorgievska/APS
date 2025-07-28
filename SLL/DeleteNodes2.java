@@ -8,39 +8,37 @@ Input:                 Output:
 */
 
 public class DeleteNodes2 {
-    public static void main(String[] args) {
-        SLL<Integer> list = new SLL<>();
-
-        Scanner input = new Scanner(System.in);
-        int n = input.nextInt();
-        for (int i = 0; i < n; i++) {
-            list.insertLast(input.nextInt());
-        }
-        input.close();
-
+     public static void delete (SLL<Integer> list) {
         SLLNode<Integer> current = list.getFirst();
-        int skipCount = 0;
+        int skipCounter = 0;
 
         while (current != null) {
-            for (int i = 0; i < skipCount; i++) {
+            for (int i = 0; i < skipCounter; i++) {
                 if (current == null)
                     break;
                 current = current.succ;
             }
 
-            if (current != null && current.succ != null) {
+            if (current != null && current.succ != null)
                 list.delete(current.succ);
-            }
-            else {
+            else
                 break;
-            }
-            skipCount++;
+            skipCounter++;
             current = current.succ;
         }
-        if (list.getFirst() == null) {
-            System.out.println("Prazna lista");
-        } else {
-            System.out.println(list);
+        System.out.println(list);
+    }
+
+    public static void main(String[] args) {
+        SLL<Integer> list = new SLL<>();
+
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        for (int i = 0; i < n; i++) {
+            list.insertLast(in.nextInt());
         }
+        in.close();
+
+        delete(list);
     }
 }
