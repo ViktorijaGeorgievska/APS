@@ -38,6 +38,7 @@ public class TransformListsByParity {
             }
             current = next;
         }
+        
         while (oddHead != null) {
             System.out.print(oddHead.element);
             if (oddHead.succ != null)
