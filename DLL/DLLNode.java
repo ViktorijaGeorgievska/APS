@@ -1,4 +1,4 @@
-class DLLNode <E> {
+public class DLLNode <E> {
     protected E element;
     protected DLLNode<E> pred, succ;
 
