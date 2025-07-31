@@ -12,42 +12,39 @@ Input:         Output:
 
 public class ListaOdListi2 {
     public static long findMagicNumber(DLL<DLL<Integer>> list) {
-        DLLNode<DLL<Integer>> current = list.getFirst();
+        DLLNode<DLL<Integer>> outCurrent = list.getFirst();
         long product = 1;
 
-        while (true) {
+        while (outCurrent != null) {
             int sum = 0;
-            DLLNode<Integer> current1 = current.element.getFirst();
+            DLLNode<Integer> inCurrent = outCurrent.element.getFirst();
 
-            while (true) {
-                sum += current1.element;
-                if (current1 == current.element.getLast())
-                    break;
-                current1 = current1.succ;
+            while (inCurrent != null) {
+                sum += inCurrent.element;
+                inCurrent = inCurrent.succ;
             }
+
             product *= sum;
-            if (current == list.getLast())
-                break;
-            current = current.succ;
+            outCurrent = outCurrent.succ;
         }
         return product;
     }
 
     public static void main(String[] args) {
-        DLL<DLL<Integer>> list = new DLL<>();
+        DLL<DLL<Integer>> outsideList = new DLL<>();            // креира надворешна листа outsideList
 
         Scanner in = new Scanner(System.in);
         int numLists = in.nextInt();
         int numElements = in.nextInt();
 
         for (int i = 0; i < numLists; i++) {
-            DLL<Integer> tmp = new DLL<>();              // креира внатрешна листа tmp
+            DLL<Integer> insideList = new DLL<>();              // креира внатрешна листа insideList
             for (int j = 0; j < numElements; j++) {
-                tmp.insertLast(in.nextInt());            // tmp се пополнува
+                insideList.insertLast(in.nextInt());            // insideList се пополнува
             }
-            list.insertLast(tmp);                        // tmp се додаваат во листата
+            outsideList.insertLast(insideList);                 // insideList се додаваат во листата outsideList
         }
         in.close();
-        System.out.println(findMagicNumber(list));
+        System.out.println(findMagicNumber(outsideList));
     }
 }
