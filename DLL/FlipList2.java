@@ -7,7 +7,8 @@ Input:                 Output:
 
 public class FlipList2 {
     // решение од книгата, по оптимално (со промена на врските на јазлите)
-    public static void flipList (DLL<Integer> list, DLL<Integer> helper) {
+    public static void flipList (DLL<Integer> list) {
+        DLL<Integer> helper = new DLL<>();
         DLLNode<Integer> help = list.getLast();
 
         while (help != null) {
@@ -23,48 +24,47 @@ public class FlipList2 {
                     (help.succ).pred = help.pred;
                 }
             }
-            help = help.succ;
+            help = help.pred;
         }
+
         help = list.getLast();
         while (help != null) {
-            helper.insertLast(help.element);        // додавање на непарните броеви
-            help = help.succ;
+            helper.insertLast(help.element);          // додавање на непарните броеви
+            help = help.pred;
         }
+        System.out.println(helper);
     }
 
-    public static void main(String[] args) {
-        DLL<Integer> list = new DLL<>();
-        Scanner in = new Scanner(System.in);
-        int n = in.nextInt();
-        for (int i = 0; i < n; i++) {
-            list.insertLast(in.nextInt());
-        }
-        in.close();
-
-        DLL<Integer> helperList = new DLL<>();
+    // мое решение
+    public static void flip (DLL<Integer> list) {
+        DLL<Integer> resultList = new DLL<>();
         DLLNode<Integer> last = list.getLast();
 
         while (last != null) {
             if (last.element % 2 == 0) {
-                helperList.insertLast(last.element);
-            }
-            last = last.pred;
-        }
-        last = list.getLast();
-        while (last != null) {
-            if (last.element % 2 != 0) {
-                helperList.insertLast(last.element);
+                resultList.insertLast(last.element);
+                list.delete(last);
             }
             last = last.pred;
         }
 
-        DLLNode<Integer> tmp = helperList.getFirst();
-        while (tmp != null) {
-            System.out.print(tmp.element);
-            if (tmp.succ != null)
-                System.out.print(" ");
-            tmp = tmp.succ;
+        last = list.getLast();
+        while (last != null) {
+            resultList.insertLast(last.element);
+            last = last.pred;
         }
-        System.out.println();
+        System.out.println(resultList);
+    }
+
+    public static void main(String[] args) {
+        DLL<Integer> list = new DLL<>();
+        
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        for (int i = 0; i < n; i++) 
+            list.insertLast(in.nextInt());
+        in.close();
+
+        flip(list);
     }
 }
