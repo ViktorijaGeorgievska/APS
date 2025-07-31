@@ -1,4 +1,4 @@
-class DLL<E> {
+public class DLL<E> {
     private DLLNode<E> first;
     private DLLNode<E> last;
 
