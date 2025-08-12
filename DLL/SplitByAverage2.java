@@ -7,7 +7,7 @@ Input:          Output:
 4 2 1 5 3       5 4
 */
 
-public class AverageSplit2 {
+public class SplitByAverage2 {
     public static int average (DLL<Integer> list) {
         DLLNode<Integer> current = list.getFirst();
         int sum = 0;
@@ -59,3 +59,4 @@ public class AverageSplit2 {
         splitByAverage(list);
     }
 }
+
