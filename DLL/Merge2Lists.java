@@ -24,7 +24,7 @@ public class Merge2Lists {
         System.out.println();
     }
 
-    // спојува 2 листи во една во опаѓачки редослед
+    // спојува 2 листи (од кои првата е во растечки, втората во опаѓачки редослед) во 1 во опаѓачки редослед
     public static DLL<Integer> merge(DLL<Integer> firstList, DLL<Integer> secondList) {
         DLL<Integer> resultList = new DLL<>();
         DLLNode<Integer> first2 = secondList.getFirst();
@@ -72,3 +72,4 @@ public class Merge2Lists {
         print(result);
     }
 }
+
