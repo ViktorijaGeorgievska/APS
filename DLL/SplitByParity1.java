@@ -7,7 +7,7 @@ Input:                Output:
 1 2 3 4 5             1<->5<->3
 */
 
-public class ParitySplit1 {
+public class SplitByParity1 {
     public static void split(DLL<Integer> list) {
         DLL<Integer> evenList = new DLL<>();
         DLL<Integer> oddList = new DLL<>();
@@ -50,3 +50,4 @@ public class ParitySplit1 {
         split(list);
     }
 }
+
