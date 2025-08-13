@@ -66,6 +66,7 @@ public class MakeZigZag {
         }
     }
 
+    // не е целосно точна
     public static void zigZagUsingFlag (DLL<Integer> list) {
         DLLNode<Integer> current = list.getFirst();
         boolean less = true;
@@ -105,4 +106,5 @@ public class MakeZigZag {
         }
         input.close();
     }
+
 }
