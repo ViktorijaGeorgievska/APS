@@ -32,7 +32,7 @@ public class InfixToPostfix2 {
                 operatorStack.pop();                               // Отстрани го ( од стекот на оператори
             } else {
                 // Операторите имаат различни приоритети
-                // => Премести оператори од стекот на оператори на постфикс доколку имаат поголем или ист приоритет.
+                // => Премести оператори од стекот на оператори на постфикс доколку имаат поголем или ист приоритет
                 while (!operatorStack.isEmpty() && precedence(currentChar) <= precedence(operatorStack.peek())) {
                     postfix.append(operatorStack.pop());
                 }
@@ -70,6 +70,7 @@ public class InfixToPostfix2 {
         System.out.println(postfixExpression);
     }
 }
+
 
 
 
