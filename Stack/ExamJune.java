@@ -35,7 +35,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class IspitJuni {
+public class ExamJune {
     public static void main(String[] args) throws IOException {
         LinkedStack<String> stack = new LinkedStack<>();
         LinkedStack<String> reverse = new LinkedStack<>();
@@ -72,3 +72,4 @@ public class IspitJuni {
         }
     }
 }
+
