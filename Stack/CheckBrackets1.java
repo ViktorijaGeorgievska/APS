@@ -5,6 +5,7 @@ APS book basic
 {s x [s - a] x (s - b) x (s - c)}
 {} [s x (s - a) x s - b) x (s - c)
 */
+
 public class CheckBrackets1 {
     public static boolean areCorrect(String expression) {
         ArrayStack<Character> bracketStack = new ArrayStack<>(50);
@@ -69,3 +70,4 @@ public class CheckBrackets1 {
 
    
   
+
