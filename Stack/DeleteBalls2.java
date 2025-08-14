@@ -83,8 +83,10 @@ public class DeleteBalls2 {
         String[] line = input.nextLine().split(" ");
         for (int i = 0; i < line.length; i++)
             balls.insertLast(line[i]);
-
+        input.close();
+        
         deleteBalls(balls);
     }
 }
+
 
