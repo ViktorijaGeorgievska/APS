@@ -79,11 +79,8 @@ public class ExamSession2 {
         String[] thirdLine = input.readLine().split(" ");
         for (int i = 0; i < N; i++)
             exams.insertLast(thirdLine[i]);
-
-        numTakenBooks(books, exams);
+        
+        input.close();
+        numTakenBooks(books, exams); 
     }
 }
-
-
-
-
