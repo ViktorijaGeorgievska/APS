@@ -30,6 +30,7 @@ MagdalenaKostoska
 4
 HristinaMihajloska
 */
+
 public class Midterm2 {
     public static void main(String[] args) {
         LinkedQueue<String> mathQueue = new LinkedQueue<>();
@@ -46,7 +47,6 @@ public class Midterm2 {
         for (int i = 0; i < numRest; i++) {
             theRestQueue.enqueue(in.next());
         }
-
         int realMath = in.nextInt();
         for (int i = 0; i < realMath; i++) {
             mathReal.add(in.next());
@@ -54,16 +54,16 @@ public class Midterm2 {
         in.close();
 
         String student;
-        int t = 1;
+        int term = 1;
 
         while (!mathQueue.isEmpty()) {
-            System.out.println(t);
+            System.out.println(term);
             for (int i = 0; i < numStudentsPerHours;) {
                 if (!mathQueue.isEmpty()) {
                     student = mathQueue.peek();
-                    if (!mathReal.contains(student)) {
+                    if (!mathReal.contains(student))
                         theRestQueue.enqueue(mathQueue.dequeue());
-                    } else {
+                    else {
                         student = mathQueue.dequeue();
                         i++;
                         System.out.println(student);
@@ -77,13 +77,11 @@ public class Midterm2 {
                 else
                     break;
             }
-            t++;
-            if (mathQueue.isEmpty())
-                break;
+            term++;
         }
         if (mathQueue.isEmpty()) {
             while (!theRestQueue.isEmpty()) {
-                System.out.println(t);
+                System.out.println(term);
                 for (int i = 0; i < numStudentsPerHours;) {
                     if (!theRestQueue.isEmpty()) {
                         student = theRestQueue.dequeue();
@@ -93,7 +91,7 @@ public class Midterm2 {
                     else
                         break;
                 }
-                t++;
+                term++;
             }
         }
     }
