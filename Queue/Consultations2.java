@@ -1,6 +1,4 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.util.Scanner;
 
 /*
 APS book
@@ -19,48 +17,51 @@ HristinaMihajloska
 MagdalenaKostoska
 */
 
-class Student {
-    String name;
-    String typeQuestion;
-
-    public Student(String name, String typeQuestion) {
-        this.name = name;
-        this.typeQuestion = typeQuestion;
-    }
-}
-
 public class Consultations2 {
-    public static void main(String[] args) throws IOException {
-        LinkedQueue<Student> apsStudents = new LinkedQueue<>();
-        LinkedQueue<String> mmsStudents = new LinkedQueue<>();
+    public static ArrayQueue<String> scheduleConsultations(ArrayQueue<String> aps, ArrayQueue<String> mms, ArrayQueue<String> type) {
+        ArrayQueue<String> schedule = new ArrayQueue<>(50);
 
-        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-        int n = Integer.parseInt(in.readLine());
-        for (int i = 0; i < n; i++) {
-            String []lines = in.readLine().split(" ");
-
-            Student s = new Student(lines[0], lines[1]);
-            apsStudents.enqueue(s);
-        }
-        int m = Integer.parseInt(in.readLine());
-        for (int i = 0; i < m; i++) {
-            mmsStudents.enqueue(in.readLine());
-        }
-
-        while (!apsStudents.isEmpty()) {
-            Student s = apsStudents.dequeue();
-            System.out.println(s.name);
-            String type = s.typeQuestion;
-            if (!apsStudents.isEmpty() && apsStudents.peek().typeQuestion.equals(type)) {
-                apsStudents.enqueue(apsStudents.dequeue());
-
-                if (!mmsStudents.isEmpty()) {
-                    System.out.println(mmsStudents.dequeue());
+        String typeQuestion = "";
+        while (!aps.isEmpty()) {
+            if (schedule.isEmpty()) {
+                schedule.enqueue(aps.dequeue());
+                typeQuestion = type.dequeue();
+            } else {
+                if (type.peek().equals(typeQuestion) && !mms.isEmpty()) {           // ако прашањето е исто
+                    schedule.enqueue(mms.dequeue());
+                    aps.enqueue(aps.dequeue());
+                    type.enqueue(type.dequeue());
+                    typeQuestion = "";
+                } else {
+                    schedule.enqueue(aps.dequeue());
+                    typeQuestion = type.dequeue();
                 }
             }
         }
-        while (!mmsStudents.isEmpty()) {
-            System.out.println(mmsStudents.dequeue());
+        while (!mms.isEmpty())
+            schedule.enqueue(mms.dequeue());
+
+        return schedule;
+    }
+
+    public static void main(String[] args) {
+        ArrayQueue<String> apsQueue = new ArrayQueue<>(50);
+        ArrayQueue<String> mmsQueue = new ArrayQueue<>(50);
+        ArrayQueue<String> typeQuestion = new ArrayQueue<>(50);
+
+        Scanner input = new Scanner(System.in);
+        int numAps = input.nextInt();
+        for (int i = 0; i < numAps; i++) {
+            apsQueue.enqueue(input.next());
+            typeQuestion.enqueue(input.next());
         }
+        int numMMS = input.nextInt();
+        for (int i = 0; i < numMMS; i++)
+            mmsQueue.enqueue(input.next());
+        input.close();
+
+        ArrayQueue<String> result = scheduleConsultations(apsQueue, mmsQueue, typeQuestion);
+        while (!result.isEmpty()) System.out.println(result.dequeue());
     }
 }
+
