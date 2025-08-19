@@ -33,9 +33,9 @@ public class ExamOrganisation2 {
             int lab = 0;
 
             while (lab <= 20 && (!theoryQueue.isEmpty() || !bothQueue.isEmpty())) {
-                if (!theoryQueue.isEmpty()) {
+                if (!theoryQueue.isEmpty())
                     System.out.println(theoryQueue.dequeue());
-                } else if (!bothQueue.isEmpty()) {
+                else if (!bothQueue.isEmpty()) {
                     String student = bothQueue.dequeue();
                     System.out.println(student);
                     exerciseQueue.enqueue(student);           // Се додаваат студентите од комбинираната редица на крај на редот за задачи
