@@ -1,5 +1,37 @@
 import java.util.Scanner;
 
+/*
+Courses + Lab
+Input:
+func1
+endfunc1
+func2
+endfunc2
+func3
+endfunc3
+endfunc1
+x
+Output:
+Invalid
+
+Input:
+func3
+func1
+endfunc1
+func1
+endfunc1
+func3
+func2
+func1
+endfunc1
+endfunc2
+endfunc3
+endfunc3
+x
+Output:
+Valid
+*/
+
 public class IsValid {
     public static boolean isValid(SLL<String> functions) {
         SLLNode<String> current = functions.getFirst();
@@ -35,3 +67,4 @@ public class IsValid {
             System.out.println("Invalid");
     }
 }
+
