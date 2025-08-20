@@ -1,4 +1,9 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 /*
+Ispit juni
 Input:
 23
 TYPE H
@@ -31,11 +36,7 @@ Helloooo
 Hello_there
 */
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
-public class ExamJune {
+public class TextEditor {
     public static void main(String[] args) throws IOException {
         LinkedStack<String> stack = new LinkedStack<>();
         LinkedStack<String> reverse = new LinkedStack<>();
@@ -50,14 +51,12 @@ public class ExamJune {
                 String add = line.split(" ")[1];
                 stack.push(add);
             } else if (line.startsWith("UNDO")) {
-                if (!stack.isEmpty()) {
+                if (!stack.isEmpty())
                     stack.pop();
-                    //sb.replace();
-                }
             } else if (line.startsWith("SHOW")) {
-                while (!stack.isEmpty()) {
+                while (!stack.isEmpty())
                     reverse.push(stack.pop());
-                }
+
                 if (!reverse.isEmpty()) {
                     while (!reverse.isEmpty()) {
                         sb.append(reverse.peek());
@@ -72,4 +71,3 @@ public class ExamJune {
         }
     }
 }
-
