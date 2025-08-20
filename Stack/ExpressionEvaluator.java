@@ -18,7 +18,7 @@ public class ExpressionEvaluator {
                 numbersStack.push(number);
                 i--;
             } else if (c == '*' || c == '+') {
-                while (!operatorsStack.isEmpty() && operatorsStack.peek() == '*') {
+                while (!operatorsStack.isEmpty() && precedence(operatorsStack.peek()) >= precedence(c)) {
                     computeExpression(numbersStack, operatorsStack.pop());
                 }
                 operatorsStack.push(c);
