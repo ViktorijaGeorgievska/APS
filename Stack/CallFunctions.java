@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /*
-Prv kolokvium Povisoka 2024
+Prv kolokvium - dopolnitelni
 Најди ја фунцкијата што повикува највеќе фунцкии во неа.
 Секоја фунцкија има Call x - x е името на фунцкијата - и Return.
 
@@ -72,3 +72,4 @@ public class CallFunctions {
         System.out.println(maxNode.element.name + " " + maxNode.element.numCalls);
     }
 }
+
