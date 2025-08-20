@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /*
+Ispit Juni vlezna
 Input:
 10
 ADD Dogovor 3
@@ -51,7 +52,7 @@ Spisok printed
 Spisok printed
 */
 
-public class ExamJune {
+public class Printer {
     public static void main(String[] args) throws IOException {
         BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(input.readLine());
@@ -98,3 +99,4 @@ public class ExamJune {
         }
     }
 }
+
