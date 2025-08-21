@@ -1,5 +1,25 @@
 import java.util.Scanner;
 
+/*
+Courses
+Input:
+5
+Jovan Todorov    1000    10.73.112.200     16:30   Bitola     760
+Mitko Janev      4350    132.28.112.200    12:15   Krusevo    4000
+Sara Dobreva     2700    10.73.60.29       14:35   Bitola     2500
+Mence Trajanova  4000    10.73.112.112     11:25   Bitola     4200
+Viktor Jovev     2200    10.73.112.79      15:15   Strumica   1800
+
+1
+Jovan Todorov    1000    10.73.112.200     16:30   Bitola     760
+
+Output:
+City: Bitola has the following number of customers:
+2
+The user who spent the most purchasing for that city is:
+Sara Dobreva with salary 2700 from address 10.73.60.29 who spent 2500
+*/
+
 public class hashing2 {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
@@ -68,3 +88,4 @@ public class hashing2 {
         }
     }
 }
+
