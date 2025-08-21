@@ -2,6 +2,28 @@ import java.util.Objects;
 import java.util.Scanner;
 import java.util.Vector;
 
+/*
+Courses + LabHome
+Input:
+4
+Slave 40 1 50
+Milan 35 3 200
+Slave 40 2 100
+Milan 35 1 150
+
+Output:
+0:<<Slave, 40>,<2, 100>>
+1:
+2:
+3:
+4:
+5:<<Milan, 35>,<3, 200>>
+6:
+7:
+8:
+9:
+*/
+
 class Person implements Comparable<Person> {
     private String name;
     private int age;
@@ -10,12 +32,10 @@ class Person implements Comparable<Person> {
         this.name = name;
         this.age = age;
     }
-
     @Override
     public String toString() {
         return "<" + name + ", " + age +">";
     }
-
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass())
@@ -23,12 +43,10 @@ class Person implements Comparable<Person> {
         Person person = (Person) o;
         return age == person.age && Objects.equals(name, person.name);
     }
-
     @Override
     public int hashCode() {
         return (age * name.charAt(0)) % 10;
     }
-
     @Override
     public int compareTo(Person o) {
         return this.name.compareTo(o.name);
@@ -43,12 +61,10 @@ class Project {
         this.workTime = workTime;
         this.salaryPerHour = salaryPerHour;
     }
-
     @Override
     public String toString() {
         return "<" + workTime + ", " + salaryPerHour +">";
     }
-
     int salary() {
         return workTime * salaryPerHour;
     }
@@ -71,15 +87,12 @@ public class Solution {
 
             SLLNode<MapEntry<Person, Project>> current = table.search(person);
             if (current != null) {
-                if (project.salary() > current.element.value.salary()) {
+                if (project.salary() > current.element.value.salary())
                     table.insert(person, project);
-                }
             }
-            else {
+            else
                 table.insert(person, project);
-            }
         }
         System.out.println(table);
     }
 }
-
