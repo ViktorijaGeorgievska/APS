@@ -109,5 +109,3 @@ public class CheckText {
             System.out.println("false");
     }
 }
-
-
