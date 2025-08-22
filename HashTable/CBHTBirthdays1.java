@@ -14,7 +14,7 @@ Input:
 Output: 3
 */
 // key -> month, value -> count (брои колку родендени има во секој месец)
-public class Birthdays1 {
+public class CBHTBirthdays1 {
     public static void main(String[] args) throws IOException {
         BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(input.readLine());
@@ -38,3 +38,4 @@ public class Birthdays1 {
             System.out.println("Empty");
     }
 }
+
