@@ -1,6 +1,7 @@
 import java.util.Scanner;
 /*
-Input
+Aps book 
+Input:
 6
 Centar Stojanoski negative
 Centar Trajkovski positive
@@ -10,9 +11,11 @@ Karpos Trajkovski negative
 Centar Trajkovski positive
 Karpos    /  Centar
 
-Output
+Output:
 0.5           0.75
 */
+
+// прво решение
 class CovidStatistics {
     String city;
     String surname;
@@ -25,7 +28,6 @@ class CovidStatistics {
         this.cPoz = 0;
         this.cNeg = 0;
     }
-
     public void setcNeg(int cNeg) {
         this.cNeg = cNeg;
     }
@@ -33,7 +35,6 @@ class CovidStatistics {
         this.cPoz = cPoz;
     }
 }
-
 public class Epidemic2 {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
@@ -77,5 +78,51 @@ public class Epidemic2 {
             int cNeg = current.element.value.cNeg;
             System.out.println((double) cPoz / (cNeg + cPoz));
         }
+    }
+}
+
+// второ решение
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Epidemic2 {
+    public static void main(String[] args) throws IOException {
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(in.readLine());
+
+        CBHT<String, Integer> positive = new CBHT<>(n * 2 + 1);
+        CBHT<String, Integer> negative = new CBHT<>(n * 2 + 1);
+        for (int i = 0; i < n; i++) {
+            String[] input = in.readLine().split(" ");
+            String municipality = input[0];
+            String value = input[2];
+
+            if (value.equals("positive")) {
+                SLLNode<MapEntry<String, Integer>> searchNode = positive.search(municipality);
+                if (searchNode != null)
+                    positive.insert(municipality, searchNode.element.value + 1);
+                else
+                    positive.insert(municipality, 1);
+            } else if (value.equals("negative")) {
+                SLLNode<MapEntry<String, Integer>> searchNode = negative.search(municipality);
+                if (searchNode != null)
+                    negative.insert(municipality, searchNode.element.value + 1);
+                else
+                    negative.insert(municipality, 1);
+            }
+        }
+        String searchMunicipality = in.readLine();
+        in.close();
+
+        SLLNode<MapEntry<String, Integer>> searchInPos = positive.search(searchMunicipality);
+        SLLNode<MapEntry<String, Integer>> searchInNeg = negative.search(searchMunicipality);
+        if (searchInPos != null && searchInNeg != null) {
+            int posValue = searchInPos.element.value;
+            int negValue = searchInNeg.element.value;
+            double riskFactor = (double) posValue / (posValue + negValue);
+            System.out.println(riskFactor);
+        } else
+            System.out.println("No such municipality!");
     }
 }
