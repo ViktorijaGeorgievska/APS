@@ -1,5 +1,8 @@
+import java.util.Scanner;
+
 /*
-Input
+APS book basics
+Input:
 5
 Alek A1+
 Dejan B-
@@ -7,17 +10,14 @@ Sandra A+
 Trajce 0+
 Rebeka A1-
 
-Output
+Output:
 A+ = 2
 B- = 1
 0+ = 1
 A- = 1
 */
 
-import java.util.Scanner;
-
-// APS book basics
-public class RedCross1 {
+public class OBHTRedCross1 {
     public static void main(String[] args) {
         OBHT<String, Integer> hashTable = new OBHT<>(11);
 
