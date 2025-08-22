@@ -70,7 +70,7 @@ class Project {
     }
 }
 
-public class Solution {
+public class CBHTSolution {
     public static void main(String[] args) {
         CBHT<Person, Project> table = new CBHT<Person, Project>(10);
 
@@ -96,3 +96,4 @@ public class Solution {
         System.out.println(table);
     }
 }
+
