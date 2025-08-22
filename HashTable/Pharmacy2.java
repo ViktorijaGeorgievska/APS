@@ -1,6 +1,10 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 /*
 APS book
-Влез:
+Input:
 5
 ACEROLA 0 100 1000
 ACIKLOVIR 1 1650 87
@@ -12,77 +16,92 @@ hydroCyklinn
 hydroCyklin20
 2
 END
-Излез:
+
+Output:
 No such drug
 HYDROCYKLIN20 NEG 113 20
 Order made
+------------------------
+Input:
+2
+Penicillin 1 300 50
+morphine 0 500 5
+PENICILLIN
+20
+MORPHINE
+2
+Morphine
+6
+END
+
+Output:
+PENICILLIN POS 300 50
+Order made
+MORPHINE NEG 500 5
+Order made
+MORPHINE NEG 500 3
+No drugs available
+
+доволно е да ги внесе првите 3 букви од името на лекот за да може да му се излиста листа од лекови кои ги има во системот -> треба да направиме nov hash()
+    String keyString = (String) key;
+        return ((100 * (100 * (100 * 0 + keyString.charAt(2)) + keyString.charAt(1)) + keyString.charAt(0)) % 656565) % buckets.length;
 */
+class Drug {
+    String name;
+    int pozNeg;
+    int price;
+    int quantity;
 
-// доволно е да ги внесе првите 3 букви од името на лекот за да може да му се излиста листа од лекови кои ги има во системот -> treba da napravime nov hash()
-
-import java.util.Scanner;
-
-class Lek {
-    String ime;
-    byte pozNeg;
-    int cena;
-    int zaliha;
-
-    public Lek(String ime, byte pozNeg, int cena, int zaliha) {
-        this.ime = ime;
+    public Drug(String name, int pozNeg, int price, int quantity) {
+        this.name = name;
+        this.quantity = quantity;
+        this.price = price;
         this.pozNeg = pozNeg;
-        this.cena = cena;
-        this.zaliha = zaliha;
     }
 
+    @Override
     public String toString() {
-        String s = new String();
-        if (pozNeg == 0)
-            s = ime + " NEG " + cena + " " + zaliha;
+        if (pozNeg == 1)
+            return name.toUpperCase() + " POS " + price + " " + quantity;
         else
-            s = ime + " POZ " + cena + " " + zaliha;
-
-        return s;
+            return name.toUpperCase() + " NEG " + price + " " + quantity;
     }
 }
+public class CBHTPharmacy2 {
+    public static void main(String[] args) throws IOException {
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 
-public class Pharmacy2 {
-    public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        int n = input.nextInt();
-
-        CBHT<String, Lek> hashTable = new CBHT<>(n * 2 + 1);
+        int n = Integer.parseInt(in.readLine());
+        CBHT<String, Drug> pharmacyHashtable = new CBHT<>(n * 2 + 1);
         for (int i = 0; i < n; i++) {
-            String ime = input.next();
-            byte pozNeg = input.nextByte();
-            int cena = input.nextInt();
-            int zaliha = input.nextInt();
+            String[] input = in.readLine().split(" ");
+            String name = input[0].toUpperCase();
+            int pozNeg = Integer.parseInt(input[1]);
+            int price = Integer.parseInt(input[2]);
+            int quantity = Integer.parseInt(input[3]);
+            Drug newDrug = new Drug(name, pozNeg, price, quantity);
 
-            Lek lek = new Lek(ime, pozNeg, cena, zaliha);
-            hashTable.insert(ime.toUpperCase(), lek);
+            pharmacyHashtable.insert(name, newDrug);
         }
 
         while (true) {
-            String imeLek = input.next();
-            if (imeLek.equalsIgnoreCase("END"))
+            String searchDrug = in.readLine();
+            if (searchDrug.equalsIgnoreCase("END"))
                 break;
-            int brParcinja = input.nextInt();
+            int numNeeded = Integer.parseInt(in.readLine());
 
-            SLLNode<MapEntry<String, Lek>> current = hashTable.search(imeLek.toUpperCase());
-            if (current == null) {
+            SLLNode<MapEntry<String, Drug>> result = pharmacyHashtable.search(searchDrug.toUpperCase());
+            if (result == null)
                 System.out.println("No such drug");
-            }
             else {
-                System.out.println(current.element.value);
-                if (current.element.value.zaliha >= brParcinja) {
+                System.out.println(result.element.value);
+                int numFound = result.element.value.quantity;
+                if (numFound > numNeeded) {
                     System.out.println("Order made");
-                    current.element.value.zaliha -= brParcinja;
-                }
-                else {
+                    result.element.value.quantity -= numNeeded;
+                } else
                     System.out.println("No drugs available");
-                }
             }
         }
     }
 }
-
