@@ -11,25 +11,13 @@ Ohrid 10:00 12:00 23.1
 Skopje 09:00 10:30 24
 Ohrid 12:00 13:00 25
 Skopje 10:00 11:00 26.2
-Ohrid
+Ohrid 
 
 Output:
-Ohrid:
-10:00 - 12:00 23.10
+Ohrid:                           Strumica:
+10:00 - 12:00 23.10              does not exist
 12:00 - 13:00 25.00
-----------------------
-Input:
-4
-Ohrid 10:00 12:00 23.1
-Skopje 09:00 10:30 24
-Ohrid 12:00 13:00 25
-Skopje 10:00 11:00 26.2
-Strumica
-
-Output:
-Strumica:
-does not exist
-
+----------------------------   
 Input:
 9
 KrivaPalanka 16:00 17:30 25.0
@@ -44,9 +32,9 @@ Bitola 21:00 21:10 18.5
 KrivaPalanka
 
 Output:
-KrivaPalanka:            Skopje:
-16:00 - 17:30 24.750     14:00 - 14:30 28.40
-18:00 - 20:30 22.00      13:00 - 15:30 33.050
+KrivaPalanka:                     Skopje:
+16:00 - 17:30 24.750              14:00 - 14:30 28.40
+18:00 - 20:30 22.00               13:00 - 15:30 33.050
 */
 
 class TemperatureByInterval {
@@ -115,3 +103,4 @@ public class CBHTWeatherForecast2 {
             System.out.println("does not exist");
     }
 }
+
