@@ -35,7 +35,7 @@ class CovidStatistics {
         this.cPoz = cPoz;
     }
 }
-public class Epidemic2 {
+public class CBHTEpidemic2 {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
@@ -86,7 +86,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Epidemic2 {
+public class CBHTEpidemic2 {
     public static void main(String[] args) throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(in.readLine());
@@ -126,3 +126,4 @@ public class Epidemic2 {
             System.out.println("No such municipality!");
     }
 }
+
