@@ -59,7 +59,7 @@ class Lecture {
 }
 
 // key -> date, value -> the other info
-public class TheBestOffer1 {
+public class CBHTTheBestOffer1 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
@@ -119,3 +119,4 @@ public class BestOffer1 {
             System.out.println("No offers");
     }
 }
+
