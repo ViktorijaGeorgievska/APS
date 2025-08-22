@@ -64,7 +64,7 @@ class Name implements Comparable<Name> {
     }
 }
 
-public class NameStatistics2 {
+public class CBHTNameStatistics2 {
     public static void main(String[] args) throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 
@@ -126,3 +126,4 @@ public class NameStatistics2 {
         }
     }
 }
+
