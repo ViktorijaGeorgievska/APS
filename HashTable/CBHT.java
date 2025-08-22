@@ -54,7 +54,8 @@ public class CBHT<K extends Comparable<K>, E> {
         // Insert newEntry at the front of the SLL in bucket b ...
         buckets[b] = new SLLNode<>(newEntry, buckets[b]);
     }
-        // for BirthdaysLessDifficult
+    
+        // for CBHTBirthdays2
 //        while (currNode != null) {
 //            MapEntry<K, E> currEntry = currNode.element;
 //            if (currEntry.value.equals(value)) {
@@ -144,3 +145,4 @@ public class CBHT<K extends Comparable<K>, E> {
         return temp;
     }
 }
+
