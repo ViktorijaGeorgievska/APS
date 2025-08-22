@@ -22,7 +22,7 @@ Output: Unknown number
 */
 
 // прво решение
-public class PhoneBook {
+public class CBHTPhoneBook {
     public static String normalizePhoneNumber(String phoneNumber) {
         if (phoneNumber.startsWith("0")) 
             phoneNumber = phoneNumber.substring(1);
@@ -80,3 +80,4 @@ public class CBHTPhoneBook2 {
             System.out.println(result.element.value);
     }
 }
+
