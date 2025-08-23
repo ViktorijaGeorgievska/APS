@@ -78,9 +78,10 @@ public class OBHTBirthdaysMoreDifficult1 {
 
             for (Employee employee : array) {
                 int year = Integer.parseInt(employee.dateOfBirth.substring(6, 10));
-                System.out.println(employee.toString() + " " + (yearSearch - year));
+                System.out.println(employee + " " + (yearSearch - year));
             }
         } else
             System.out.println("Empty");
     }
 }
+
