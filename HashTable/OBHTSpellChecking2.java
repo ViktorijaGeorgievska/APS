@@ -15,6 +15,7 @@ Where is my Ccat?
 Output:
 Ccat
 */
+
 class Word implements Comparable<Word> {
     String word;
 
@@ -84,3 +85,4 @@ public class OBHTSpellChecking2 {
             System.out.println("Bravo");
     }
 }
+
