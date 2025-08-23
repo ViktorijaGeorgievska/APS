@@ -1,17 +1,18 @@
+import java.util.Scanner;
+
 /*
-Input
+APS book basics for obht
+Input:
 3
 Magdalena Kostoska 15/05/1982
 Hristina Mihajloska 30/05/1984
 Ilinka Ivanovska 15/05/1986
 15/05/2016
 
-Output
+Output:
 Ilinka Ivanovska 30
 Magdalena Kostoska 34
 */
-
-import java.util.Scanner;
 
 class Employee {
     String name;
@@ -25,7 +26,7 @@ class Employee {
     }
 }
 
-public class BirthdaysMoreDifficult1CBHT {
+public class CBHTBirthdaysMoreDifficult1 {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
 
@@ -35,30 +36,28 @@ public class BirthdaysMoreDifficult1CBHT {
             String name = in.next();
             String surname = in.next();
             String date = in.next();
-
-            String birthDate = date.split("/")[0] + date.split("/")[1];        // 15/05/2016 ->  1505
+  
+            String birthDate = date.split("/")[0] + date.split("/")[1];                // 15/05/2016 ->  1505
 
             Employee employee = new Employee(name, surname, Integer.parseInt(date.split("/")[2]));
             hashTable.insertBirthdays(birthDate, employee);
         }
 
         String date = in.next();
-
-        String key = date.split("/")[0] + date.split("/")[1];                   // 15/05/2016 ->  1505
+        String key = date.split("/")[0] + date.split("/")[1];                          // 15/05/2016 ->  1505
         int year = Integer.parseInt(date.split("/")[2]);                               // 15/05/2016 ->  2016
 
         SLLNode<MapEntry<String, Employee>> hashElement = hashTable.search(key);
 
         if (hashElement != null) {
             while (hashElement != null) {
-                int years = year - hashElement.element.value.birthYear;                       // segashnata - god na vraboteniot (2016 - 1982)
+                int years = year - hashElement.element.value.birthYear;                 // сегашната - год на раѓање на вработениот (2016 - 1982)
 
                 System.out.println(hashElement.element.value.name + " " + hashElement.element.value.surname + " " + years);
                 hashElement = hashElement.succ;
             }
         }
-        else {
+        else 
             System.out.println("There is no birthdays at the date!");
-        }
     }
 }
