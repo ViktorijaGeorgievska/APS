@@ -1,7 +1,9 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+
 /*
+APS book
 Input:
 2
 0610992333666 5.0
@@ -11,11 +13,13 @@ Input:
 0901993222233 4.68
 0610992333666 5.0
 1511989984256 3.45
-0610992333666           Output: OK
+0610992333666    
+
+Output: 
+OK
 */
 
-// APS book
-public class FacultyEnrollment2 {
+public class OBHTFacultyEnrollment2 {
     public static void main(String[] args) throws IOException {
         BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 
@@ -25,7 +29,6 @@ public class FacultyEnrollment2 {
             String []lines = input.readLine().split(" ");
             facultyHash.insert(lines[0], Double.parseDouble(lines[1]));
         }
-
         int m = Integer.parseInt(input.readLine());
         OBHT<String, Double> eDictionaryHash = new OBHT<>(m * 2);
         for (int i = 0; i < m; i++) {
