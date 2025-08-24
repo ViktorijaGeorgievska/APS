@@ -50,15 +50,15 @@ public class OBHTExams2 {
         int n = Integer.parseInt(input.readLine());
         OBHT<String, ArrayList<SubjectInfo>> hashTable = new OBHT<>(2 * n - 1);
         for (int i = 0; i < n; i++) {
-            String line = input.readLine();                                         // 27/01/2016 08:00 Laboratories Napredno programiranje
+            String line = input.readLine();                                        // 27/01/2016 08:00 Laboratories Napredno programiranje
 
-            String date = line.substring(0, 10);                                    // 27/01/2016
-            String time = line.substring(11, 16);                                   // 08:00
-            String restInfo = line.substring(17);                        // Laboratories Napredno programiranje
+            String date = line.substring(0, 10);                                   // 27/01/2016
+            String time = line.substring(11, 16);                                  // 08:00
+            String restInfo = line.substring(17);                                  // Laboratories Napredno programiranje
 
             int firstSpace = restInfo.indexOf(" ");                                // 12
             String room = restInfo.substring(0, firstSpace);                       // Laboratories
-            String subjectName = restInfo.substring(firstSpace + 1);    // Napredno programiranje
+            String subjectName = restInfo.substring(firstSpace + 1);               // Napredno programiranje
 
             SubjectInfo subjectObj = new SubjectInfo(subjectName, room, time);
 
