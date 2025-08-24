@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 /*
 Input:
 4
@@ -17,9 +19,7 @@ papagal
 lav
 */
 
-import java.util.Scanner;
-
-public class Dictionary {
+public class CBHTDictionary {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
