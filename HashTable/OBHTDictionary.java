@@ -1,4 +1,5 @@
 import java.util.Scanner;
+
 /*
 Input:
 5
@@ -19,7 +20,7 @@ papagal
 lav
 */
 
-public class Dictionary2 {
+public class OBHTDictionary {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
