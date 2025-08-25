@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 // APS book basics
-public class BinaryTreeIntegerSumSubtree1 {
+public class BTreeIntSumSubtree1 {
     public static int sumMinLeftSubtree(BNode<Integer> node, int value) {
         if (node == null)
             return 0;
@@ -39,4 +39,5 @@ public class BinaryTreeIntegerSumSubtree1 {
             System.out.println("Node with value " + value + " does NOT exist in the given binary tree!");
     }
 }
+
 
