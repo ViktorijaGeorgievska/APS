@@ -1,7 +1,6 @@
 
 // APS book basic
 public class BinaryTreeString1 {
-
     public static BTree<String> getStringTree() {
         BTree<String> tree = new BTree<>();
 
