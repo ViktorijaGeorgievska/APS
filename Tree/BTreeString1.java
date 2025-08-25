@@ -21,4 +21,3 @@ public class BTreeString1 {
         binaryTree.inorder();
     }
 }
-
