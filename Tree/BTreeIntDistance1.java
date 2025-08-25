@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 // APS book basics
-public class BinaryTreeIntegerDistance1 {
+public class BTreeIntDistance1 {
     // lowest common ancestor - методата за наоѓање на најдолен заеднички предок на два јазли дадени со соодветните вредности
     private static BNode<Integer> findLCA(BNode<Integer> node, int firstValue, int secondValue) {
         if (node == null)
@@ -54,3 +54,4 @@ public class BinaryTreeIntegerDistance1 {
             System.out.println("Some of the values are not present in the tree");
     }
 }
+
