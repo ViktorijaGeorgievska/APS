@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 // APS book basics
-public class BinaryTreeIntegerSum1 {
+public class BTreeIntSum1 {
     public static int sumOfBT(BNode<Integer> node) {
         if (node == null)
             return 0;
