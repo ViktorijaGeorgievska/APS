@@ -2,7 +2,6 @@ import java.util.Scanner;
 
 // APS book basics
 public class BinaryTreeInteger1 {
-
     public static BTree<Integer> getIntegerTree() {
         BTree<Integer> tree = new BTree<>();
 
@@ -38,7 +37,7 @@ public class BinaryTreeInteger1 {
         else
             System.out.println("Node with value " + searchValue + " does NOT exist in the given tree!");
 
-        System.out.println("============================================================================");
+        System.out.println("===========================================================================");
 
         System.out.println("Enter an integer value to get its level in the binary tree: ");
         int value = in.nextInt();
