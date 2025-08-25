@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 // APS book basics
-public class BinaryTreeInteger1 {
+public class BTreeInt1 {
     public static BTree<Integer> getIntegerTree() {
         BTree<Integer> tree = new BTree<>();
 
@@ -49,3 +49,4 @@ public class BinaryTreeInteger1 {
             System.out.println(value + " is not present in the binary tree!");
     }
 }
+
