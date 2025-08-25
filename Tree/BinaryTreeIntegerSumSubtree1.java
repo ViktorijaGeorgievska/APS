@@ -8,7 +8,7 @@ public class BinaryTreeIntegerSumSubtree1 {
 
         int tmpSum = sumMinLeftSubtree(node.left, value) + sumMinLeftSubtree(node.right, value);
         if (node.info < value)                   // доколку вред на nodes во левото поддрво е помала од вред на value-node на кој сметаме сума
-            return tmpSum + node.info;           // се додава вредноста на тој node
+            return tmpSum + node.info;           // се додава вредноста на тие nodes
         else
             return tmpSum;
     }
@@ -19,7 +19,7 @@ public class BinaryTreeIntegerSumSubtree1 {
 
         int tmpSum = sumMaxRightSubTree(node.left, value) + sumMaxRightSubTree(node.right, value);
         if (node.info > value)                  // доколку вред на nodes во десното поддрво е поголема од вред на value-node на кој сметаме сума
-            return tmpSum + node.info;          // се додава вредноста на тој node
+            return tmpSum + node.info;          // се додава вредноста на тие nodes
         else
             return tmpSum;
     }
@@ -39,3 +39,4 @@ public class BinaryTreeIntegerSumSubtree1 {
             System.out.println("Node with value " + value + " does NOT exist in the given binary tree!");
     }
 }
+
