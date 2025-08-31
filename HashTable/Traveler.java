@@ -23,4 +23,10 @@ class Traveler {
     void setCount(int count) {
         this.count = count;
     }
+
+      @Override
+    public String toString() {
+        return name + " " + surname + " with salary " + budget + " from address " + ip + " who logged in at " + time;
+    }
 }
+
