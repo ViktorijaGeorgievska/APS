@@ -21,7 +21,7 @@ The user who logged on earliest after noon from that network is:
 Viktor Jovev with salary 2200 from address 10.73.112.79 who logged in at 15:15
 */
 
-public class CBHTHashing4 {
+public class CBHThashing4 {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
@@ -72,13 +72,17 @@ public class CBHTHashing4 {
                 Traveler earliest = listTravelers.getFirst();
                 for (Traveler t : listTravelers) {
                     int hour = Integer.parseInt(t.time.split(":")[0]);
-                    if (hour <= Integer.parseInt(earliest.time.split(":")[0]))
+                    int minutes = Integer.parseInt(t.time.split(":")[1]);
+                    if (hour < Integer.parseInt(earliest.time.split(":")[0])) {
                         earliest = t;
+                    } else if (hour == Integer.parseInt(earliest.time.split(":")[0])) {
+                        if (minutes < Integer.parseInt(earliest.time.split(":")[1])) 
+                            earliest = t;
+                    }
                 }
-
-                System.out.println("IP network: " + newIp + " has the following number of users: ");
+                System.out.println("IP network: " + newIp + " has the following number of users:");
                 System.out.println(result.element.value.element().count);
-                System.out.println("The user who logged on earliest after noon from that network is: ");
+                System.out.println("The user who logged on earliest after noon from that network is:");
                 System.out.println(earliest);
                 System.out.println();
             }
