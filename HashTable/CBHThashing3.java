@@ -1,84 +1,89 @@
-import java.io.IOException;
+import java.util.LinkedList;
 import java.util.Scanner;
 
-public class hashing3 {
-    public static void main(String[] args) throws IOException {
-        Scanner in = new Scanner(System.in);
+/*
+Courses + Lab
+Input:
+5
+Jovan Todorov    1000    10.73.112.200     16:30   Bitola     760
+Mitko Janev      4350    132.28.112.200    12:15   Krusevo    4000
+Sara Dobreva     2700    10.73.60.29       14:35   Bitola     2500
+Mence Trajanova  4000    10.73.112.112     11:25   Bitola     4200
+Viktor Jovev     2200    10.73.112.79      15:15   Strumica   1800
 
-        int n = in.nextInt();
-        CBHT<String, Traveler> hashtable = new CBHT<>(n * 2 - 1);
-        CBHT<String, Traveler> hashtable2 = new CBHT<>(n * 2 - 1);
+1
+Jovan Todorov    1000    10.73.112.200     16:30   Bitola     760
+
+Output:
+City: Bitola has the following number of customers:
+2
+The user who logged on earliest after noon from that city is:
+Sara Dobreva with salary 2700 from address 10.73.60.29 who logged in at 14:35
+*/
+
+public class CBHThashing3 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        int n = input.nextInt();
+        CBHT<String, LinkedList<Traveler>> hashTable1 = new CBHT<>(n * 2 - 1);    // само број колку луѓе има на истата мрежа кои се вклучиле после 12h
         for (int i = 0; i < n; i++) {
-            String name = in.next();
-            String surname = in.next();
-            int budget = in.nextInt();
-            String ip = in.next();
-            String time = in.next();
-            String city = in.next();
-            int ticketPrice = in.nextInt();
-            Traveler traveler = new Traveler(name, surname, budget, ip, time, city, ticketPrice, 0);
+            String name = input.next();
+            String surname = input.next();
+            int budget = input.nextInt();
+            String ip = input.next();
+            String time = input.next();
+            String city = input.next();
+            int ticketPrice = input.nextInt();
+            Traveler t = new Traveler(name, surname, budget, ip, time, city, ticketPrice, 1);
 
-            // броиме колку од градот се вклучиле пред 12 часот
-            SLLNode<MapEntry<String, Traveler>> search = hashtable.search(city);
-            if (search != null) {
-                String[] travelTime = search.element.value.time.split(":");
-                if (Integer.parseInt(travelTime[0]) >= 12) {
-                    traveler.setCount(search.element.value.count + 1);
-                    hashtable.insert(city, traveler);
+            SLLNode<MapEntry<String, LinkedList<Traveler>>> searchNode = hashTable1.search(city);
+            int hour = Integer.parseInt(time.split(":")[0]);
+            LinkedList<Traveler> list;                                                 // во листа се чуваат сите Travelers (за полесно да се најде најрано време!)
+            if (hour >= 12) {
+                if (searchNode == null) {
+                    list = new LinkedList<>();
+                    list.add(t);
+                    hashTable1.insert(city, list);
                 }
-            } else {
-                hashtable.insert(city, traveler);
-            }
-
-            // кои се вклучил најрано од сите вклучени пред 12 часот
-            SLLNode<MapEntry<String, Traveler>> search2 = hashtable2.search(city);
-            int min = 0;
-            boolean found = false;
-            if (budget >= ticketPrice) {
-                if (search2 != null) {
-                    String[] travelTime = search2.element.value.time.split(":");
-                    int t = Integer.parseInt(travelTime[0]) + Integer.parseInt(travelTime[1])/60;
-                    if (t >= 12) {
-                        if (!found) {
-                            min = t;
-                            found = true;
-                        }
-                        if (t < min) {
-                            min = t;
-                        }
-                        hashtable2.insert(city, traveler);
-                    }
-                } else {
-                    hashtable2.insert(city, traveler);
+                else {
+                    list = searchNode.element.value;
+                    list.element().count += 1;
+                    list.add(t);
+                    hashTable1.insert(city, list);
                 }
             }
         }
-        int m = in.nextInt();
+        int m = input.nextInt();
         for (int i = 0; i < m; i++) {
-            String name = in.next();
-            String surname = in.next();
-            int budget = in.nextInt();
-            String ip = in.next();
-            String time = in.next();
-            String city = in.next();
-            int ticketPrice = in.nextInt();
+            String name = input.next();
+            String surname = input.next();
+            int budget = input.nextInt();
+            String ip = input.next();
+            String time = input.next();
+            String city = input.next();
+            int ticketPrice = input.nextInt();
 
-            SLLNode<MapEntry<String, Traveler>> search = hashtable.search(city);
-            SLLNode<MapEntry<String, Traveler>> search2 = hashtable2.search(city);
-
-            if (search != null) {
-                System.out.println("City: " + city + " has the following number of customers: ");
-                System.out.println(search.element.value.count);
-
-                if (search2 != null) {
-                    System.out.println("The user who logged on earliest after noon from that city is: ");
-                    String nameSurname = search2.element.value.name + " " + search2.element.value.surname;
-                    int salary = search2.element.value.budget;
-                    String ipAddress = search2.element.value.ip;
-                    String timeBuying = search2.element.value.time;
-                    System.out.println(nameSurname + " with salary " + salary + " from address " + ipAddress + " who logged in at " + timeBuying);
-                    System.out.println();
+            SLLNode<MapEntry<String, LinkedList<Traveler>>> result = hashTable1.search(city);
+            if (result != null) {
+                LinkedList<Traveler> listTravelers = result.element.value;
+                Traveler earliest = listTravelers.getFirst();
+                for (Traveler t : listTravelers) {
+                    int hour = Integer.parseInt(t.time.split(":")[0]);
+                    int minutes = Integer.parseInt(t.time.split(":")[1]);
+                    if (hour < Integer.parseInt(earliest.time.split(":")[0])) {
+                        earliest = t;
+                    } else if (hour == Integer.parseInt(earliest.time.split(":")[0])) {
+                        if (minutes < Integer.parseInt(earliest.time.split(":")[1]))
+                            earliest = t;
+                    }
                 }
+
+                System.out.println("City: " + city + " has the following number of users: ");
+                System.out.println(result.element.value.element().count);
+                System.out.println("The user who logged on earliest after noon from that network is: ");
+                System.out.println(earliest);
+                System.out.println();
             }
         }
     }
