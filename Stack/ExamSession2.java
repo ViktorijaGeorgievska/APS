@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /*
+Not finished
 APS book
 Input:
 7 3
@@ -79,8 +80,12 @@ public class ExamSession2 {
         String[] thirdLine = input.readLine().split(" ");
         for (int i = 0; i < N; i++)
             exams.insertLast(thirdLine[i]);
-        
+
         input.close();
-        numTakenBooks(books, exams); 
+        numTakenBooks(books, exams);
     }
 }
+
+
+
+

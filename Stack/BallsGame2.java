@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 /*
+Not finished
 APS book
 Input:
 4
