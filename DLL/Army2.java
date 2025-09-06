@@ -1,45 +1,71 @@
 import java.util.Scanner;
 
-public class Army2 {
-    public static void main(String[] args) {
-        DLL<Integer> list = new DLL<>();
+/*
+Not finished
+APS book
+Input:
+10
+1 2 3 4 5 6 7 8 9 10
+1 5
+6 10
+Output:
+6 7 8 9 10 1 2 3 4 5
+*/
 
-        Scanner in = new Scanner(System.in);
-        int n = in.nextInt();
-        for (int i = 0; i < n; i++) {
-            list.insertLast(in.nextInt());
+public class Army2 {
+    public static void print(DLL<Integer> list) {
+        DLLNode<Integer> current = list.getFirst();
+        while (current != null) {
+            System.out.print(current.element + " ");
+            current = current.succ;
         }
-        int firstIntervalStart = in.nextInt();
-        int firstIntervalEnd = in.nextInt();
-        int secondIntervalStart = in.nextInt();
-        int secondIntervalEnd = in.nextInt();
+    }
+
+    public static void deleteSublist(DLL<Integer> list) {
+        DLLNode<Integer> current = list.getFirst();
+
+        print(list);
+    }
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        DLL<Integer> list = new DLL<>();
+        int n = in.nextInt();
+        for (int i = 0; i < n; i++)
+            list.insertLast(in.nextInt());
+
+        int startFirst = in.nextInt();
+        int endFirst = in.nextInt();
+        int startSecond = in.nextInt();
+        int endSecond = in.nextInt();
         in.close();
 
+        DLLNode<Integer> current = list.getFirst();
         DLLNode<Integer> firstStart = null, firstEnd = null;
         DLLNode<Integer> secondStart = null, secondEnd = null;
 
-        DLLNode<Integer> current = list.getFirst();
         while (current != null) {
-            if (current.element.equals(firstIntervalStart))
+            if (current.element.equals(startFirst))
                 firstStart = current;
-            if (current.element.equals(firstIntervalEnd))
+            if (current.element.equals(endFirst))
                 firstEnd = current;
-            if (current.element.equals(secondIntervalStart))
+            if (current.element.equals(startSecond))
                 secondStart = current;
-            if (current.element.equals(secondIntervalEnd))
+            if (current.element.equals(endSecond))
                 secondEnd = current;
             current = current.succ;
         }
 
-        // Ако интервалите се во обратен ред (second пред first), разменувај
         if (firstStart.pred != null && secondStart.pred != null &&
-        secondStart.pred.element.equals(firstIntervalEnd)) {
-            DLLNode<Integer> tempS = firstStart;
-            DLLNode<Integer> tempE = firstEnd;
-            firstStart = secondStart;
-            firstEnd = secondEnd;
-            secondStart = tempS;
-            secondEnd = tempE;
+                secondStart.pred.element.equals(endSecond)) {
+           DLLNode<Integer> tmpS = firstStart;
+           DLLNode<Integer> tmpE = firstEnd;
+           firstStart = secondStart;
+           firstEnd = secondEnd;
+           secondStart = tmpS;
+           secondEnd = tmpE;
         }
+
+        print(list);
     }
 }
