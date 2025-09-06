@@ -1,4 +1,4 @@
-
+package BinaryTree;
 /*
 APS book
 Output: The given tree is a SumTree

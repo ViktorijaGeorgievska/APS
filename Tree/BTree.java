@@ -1,3 +1,5 @@
+package BinaryTree;
+
 public class BTree<E> {
     public BNode<E> root;
 
@@ -128,7 +130,7 @@ public class BTree<E> {
         return find(root, target);
     }
 
-    private int getLevel(BNode<E> node, E info, int level) {
+    public int getLevelR(BNode<E> node, E info, int level) {
         if (node == null)
             return 0;
 
@@ -137,17 +139,17 @@ public class BTree<E> {
             return level;                            // The level of the node with 'info' has been found
 
         // Recursively search for 'info' in the left subtree.
-        int tmpLevel = getLevel(node.left, info, level + 1);
+        int tmpLevel = getLevelR(node.left, info, level + 1);
         if (tmpLevel != 0)                           // Return the level if found in the left subtree
             return tmpLevel;
 
         // If 'info' is not found in the left subtree, search in the right subtree
-        tmpLevel = getLevel(node.right, info, level + 1);
+        tmpLevel = getLevelR(node.right, info, level + 1);
         return tmpLevel;
     }
 
     public int getLevel(E info) {
-        return getLevel(root, info, 1);
+        return getLevelR(root, info, 1);
     }
 
     private int insideNodesR(BNode<E> node) {
